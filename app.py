@@ -31,16 +31,19 @@ def add_user():
     return render_template('add_user.html', form=form)
 
 
-@app.route('/user/<username>')
-def show_user(username):
-    return f"<h2> Hello, {username} </h2>"
+@app.route('/show/<username>')
+def show(username):
+    return f" <h1> Hello, {username} </h1>"
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         user = request.form['username']
-        return f"Welcome, {user}"
+        return f"""<h2> Welcome, {user} </h2>
+        
+        Its a simple function. No account have been created!
+        """
     return render_template('login.html')
 
 
