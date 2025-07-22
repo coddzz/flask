@@ -6,6 +6,24 @@ app = Flask(__name__)
 def home():
     return render_template('home.html')
 
+@app.route('/user/<username>')
+def show_user(username):
+    return f"<h2> Hello, {username} </h2>"
+
+from flask import request
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        user = request.form['username']
+        return f"Welcome, {user}"
+    return '''
+        <form method="post">
+            Username: <input name="username">
+            <input type="submit">
+        </form>
+    '''
+
 @app.route('/add_users')
 def addUsers():
     return render_template('add_users.html')
